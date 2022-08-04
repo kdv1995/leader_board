@@ -4,7 +4,7 @@ import 'App.scss';
 const App = () => {
   return (
     <div className="App">
-      <h1>Hello world</h1>
+      <h1>New branch is here</h1>
     </div>
   );
 };
