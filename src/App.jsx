@@ -1,10 +1,13 @@
-import React from 'react';
-import 'App.scss';
+import Home from "pages/Home";
+import React from "react";
+import "App.scss";
 
 const App = () => {
   return (
     <div className="App">
-      <h1>New branch is here</h1>
+      <div className="App__container">
+        <Home />
+      </div>
     </div>
   );
 };

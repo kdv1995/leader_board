@@ -22,7 +22,10 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "no-param-reassign": "off",
+    "jsx-quotes": "off",
+    "quotes": "off"
   },
   "settings": {
     "import/resolver": {
