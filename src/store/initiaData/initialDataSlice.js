@@ -9,9 +9,9 @@ const initialDataSlice = createSlice({
     setData: (state, { payload }) => {
       state.data = payload
         .map((item) => (item.score ? item : { ...item, score: 0 }))
-        .map((item, index) => ({ ...item, rank: item.score }))
         .map((item) => ({ ...item, name: item.name.charAt(0).toUpperCase() + item.name.slice(1) }))
-        .sort((a, b) => b.score - a.score);
+        .sort((a, b) => b.score - a.score)
+        .map((item, index) => ({ ...item, rank: index + 1 }));
     },
   },
 });

@@ -1,0 +1,14 @@
+.Table-heading {
+  &__container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  &__title {
+    flex: 1 1 auto;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #030327;
+  }
+}
