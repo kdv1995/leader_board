@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
 const initialDataSlice = createSlice({
   name: "initialDataSlice",
@@ -8,23 +7,14 @@ const initialDataSlice = createSlice({
   },
   reducers: {
     setData: (state, { payload }) => {
-      state.data = payload.map((item) => (item.score ? item : { ...item, score: 0 }));
+      state.data = payload
+        .map((item) => (item.score ? item : { ...item, score: 0 }))
+        .map((item, index) => ({ ...item, rank: item.score }))
+        .map((item) => ({ ...item, name: item.name.charAt(0).toUpperCase() + item.name.slice(1) }))
+        .sort((a, b) => b.score - a.score);
     },
   },
 });
 
 export default initialDataSlice.reducer;
 export const { setData } = initialDataSlice.actions;
-
-export function fetchItems() {
-  return async (dispatch) => {
-    axios
-      .get("http://coding-test.cube19.io/frontend/v1/starting-state")
-      .then((response) => dispatch(setData(response.data)));
-    try {
-      console.log("Successful");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}

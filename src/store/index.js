@@ -1,10 +1,8 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import countSlice from "store/count/countSlice";
 import initialDataSlice from "store/initiaData/initialDataSlice";
 
 const rootReducer = combineReducers({
-  count: countSlice,
-  data: initialDataSlice,
+  storeData: initialDataSlice,
 });
 
 export const store = configureStore({

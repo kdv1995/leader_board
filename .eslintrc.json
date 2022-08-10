@@ -25,7 +25,8 @@
     "import/prefer-default-export": "off",
     "no-param-reassign": "off",
     "jsx-quotes": "off",
-    "quotes": "off"
+    "quotes": "off",
+    "object-curly-newline": "off"
   },
   "settings": {
     "import/resolver": {
