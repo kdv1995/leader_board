@@ -2,14 +2,30 @@ import React from "react";
 import PropTypes from "prop-types";
 import styles from "components/Header/Header.module.scss";
 import tablebanner from "assets/banner/tablebanner.png";
+import { useSelector } from "react-redux";
+import { dataSelector } from "store/selector/dataSelector";
+import scorer from "assets/topscorers/man.svg";
 
 export const Header = ({ title, draft }) => {
+  const data = useSelector(dataSelector);
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
         <div className={styles.header__topscore}>
           <h3 className={styles.header__title}>{title}</h3>
           <h3 className={styles.header__draft}>{draft}</h3>
+          <div style={{ display: "flex" }}>
+            {data
+              .map(({ name, score }) => (
+                <div>
+                  <div className={styles.header__profile}>
+                    <img src={scorer} alt="topscorer" />
+                  </div>
+                  <span style={{ color: "#fff" }}>{`${name} - ${score}`}</span>
+                </div>
+              ))
+              .slice(0, 4)}
+          </div>
         </div>
         <div>
           <picture>

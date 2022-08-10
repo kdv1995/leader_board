@@ -1,17 +1,25 @@
-import { Button, Header, Heading, User } from "components";
+import { Button, Header, Heading, Modal, User } from "components";
 import { fetchData } from "functions/fetchData";
-import React, { useEffect } from "react";
+
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dataSelector } from "store/selector/dataSelector";
 
 const Home = () => {
   const data = useSelector(dataSelector);
   const dispatch = useDispatch();
+  const [modal, setModal] = useState(false);
+  const handleModalOpen = () => {
+    setModal(true);
+  };
+  const handleModalClose = () => {
+    setModal(false);
+  };
   useEffect(() => {
     dispatch(fetchData());
   }, [data]);
   return (
-    <>
+    <main>
       <Heading name="Cube" highlighted={19} title="Leaderboard" />
       <Header title="All-time highest scorers" draft="You can be among the leaders already today" />
       <div className="Home__container">
@@ -24,11 +32,18 @@ const Home = () => {
         </div>
         <ul>
           {data.map(({ name, score, rank }) => (
-            <User rank={rank} score={score} name={name} difference="places" />
+            <User
+              rank={rank}
+              score={score}
+              name={name}
+              difference="places"
+              onClick={handleModalOpen}
+            />
           ))}
         </ul>
       </div>
-    </>
+      {modal && <Modal onClick={handleModalClose} />}
+    </main>
   );
 };
 

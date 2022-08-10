@@ -3,7 +3,7 @@
     position: relative;
     background: rgba(27, 33, 172, 0.96);
     border-radius: 10px;
-    padding: 90px;
+    padding: 20px;
   }
   &__title {
     padding-bottom: 8px;
@@ -13,16 +13,23 @@
     color: #efefef;
   }
   &__draft {
+    padding-bottom: 8px;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: #efefef;
   }
+  .header__profile {
+    padding-bottom: 5px;
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
   &__topscore {
   }
   &__img {
     position: absolute;
-    top: 0;
+    top: -5%;
     right: 0;
   }
 }
