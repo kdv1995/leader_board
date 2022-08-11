@@ -1,8 +1,8 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import initialDataSlice from "store/initiaData/initialDataSlice";
+import leaderSlice from "store/leadersSlice/leadersSlice";
 
 const rootReducer = combineReducers({
-  storeData: initialDataSlice,
+  leaders: leaderSlice,
 });
 
 export const store = configureStore({

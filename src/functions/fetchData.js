@@ -1,15 +1,7 @@
-import axios from "axios";
-import { setData } from "store/initiaData/initialDataSlice";
+// import { leadersApi } from "api/leadersApi";
 
-export const fetchData = () => {
-  return async (dispatch) => {
-    axios
-      .get("http://coding-test.cube19.io/frontend/v1/starting-state")
-      .then((response) => dispatch(setData(response.data)));
-    try {
-      console.log("Successful");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
+// export const fetchLeaders = async () => {
+//   const response1 = await leadersApi
+//     .get("/initial-state")
+//     .then((response) => console.log(response.data));
+// };

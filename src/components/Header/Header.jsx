@@ -44,6 +44,11 @@ export const Header = ({ title, draft }) => {
 };
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
-  draft: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  draft: PropTypes.string,
+};
+
+Header.defaultProps = {
+  title: PropTypes.string,
+  draft: PropTypes.string,
 };

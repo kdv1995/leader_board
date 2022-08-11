@@ -13,7 +13,12 @@ export const Heading = ({ name, highlighted, title }) => {
 };
 
 Heading.propTypes = {
-  name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  highlighted: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  title: PropTypes.string,
+  highlighted: PropTypes.number,
+};
+Heading.defaultProps = {
+  name: PropTypes.string,
+  title: PropTypes.string,
+  highlighted: PropTypes.number,
 };

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialDataSlice = createSlice({
-  name: "initialDataSlice",
+  name: "leadersSlice",
   initialState: {
     data: [],
   },

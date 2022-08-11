@@ -1,1 +1,1 @@
-export const dataSelector = (state) => state.storeData.data;
+export const dataSelector = (state) => state.leaders.data;

@@ -1,5 +1,5 @@
+import { fetchLeaders } from "api/leadersApi";
 import { Button, Header, Heading, Modal, User } from "components";
-import { fetchData } from "functions/fetchData";
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +16,7 @@ const Home = () => {
     setModal(false);
   };
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchLeaders());
   }, [data]);
   return (
     <main>
@@ -27,8 +27,8 @@ const Home = () => {
           <h3 className="Table-heading__title">Leader table for this period</h3>
           <Button title="<<" />
           <Button title=">>" />
-          <Button title="Add new day" bckgColor="#F99746" color="#fff" padding="6px 24px" />
-          <Button title="Add new user" bckgColor="#1E3CA9" color="#fff" padding="6px 24px" />
+          <Button title="Add new day" />
+          <Button title="Add new user" />
         </div>
         <ul>
           {data.map(({ name, score, rank }) => (
