@@ -1,11 +1,11 @@
-import tablebanner from "assets/banner/tablebanner.png";
-import scorer from "assets/topscorers/man.svg";
-import styles from "components/Header/Header.module.scss";
-import { nanoid } from "nanoid";
-import PropTypes from "prop-types";
 import React from "react";
+import PropTypes from "prop-types";
+import styles from "components/Header/Header.module.scss";
+import tablebanner from "assets/banner/tablebanner.png";
 import { useSelector } from "react-redux";
 import { dataSelector } from "store/selector/dataSelector";
+import scorer from "assets/topscorers/man.svg";
+import { nanoid } from "nanoid";
 
 export const Header = ({ title, draft }) => {
   const data = useSelector(dataSelector);

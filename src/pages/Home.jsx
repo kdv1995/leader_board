@@ -3,20 +3,12 @@ import { nanoid } from "nanoid";
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { asynchrononousRequest } from "store/actions/setData";
 import { dataSelector } from "store/selector/dataSelector";
 
 const Home = () => {
   const data = useSelector(dataSelector);
   const dispatch = useDispatch();
-  const [modal, setModal] = useState(false);
-  const handleModalOpen = () => {
-    setModal(true);
-  };
-  const handleModalClose = () => {
-    setModal(false);
-  };
   useEffect(() => {
     dispatch(asynchrononousRequest());
   }, []);
@@ -33,19 +25,18 @@ const Home = () => {
           <Button title="Add new user" />
         </div>
         <ul>
-          {data.map(({ name, score, rank }) => (
+          {data.map(({ name, score, rank, id }) => (
             <User
               key={nanoid()}
+              id={id}
               rank={rank}
               score={score}
               name={name}
               difference="places"
-              onClick={handleModalOpen}
             />
           ))}
         </ul>
       </div>
-      {modal && <Modal onClick={handleModalClose} />}
     </main>
   );
 };

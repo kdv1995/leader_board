@@ -8,6 +8,12 @@ const initialDataSlice = createSlice({
     fetching: false,
     error: null,
   },
+  reducers: {
+    setEditUserScore: (state, { payload }) => {
+      const { id, name, score } = payload;
+      console.log(payload);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(asynchrononousRequest.fulfilled, (state, { payload }) => {
       state.data = payload
@@ -32,3 +38,4 @@ const initialDataSlice = createSlice({
 });
 
 export default initialDataSlice.reducer;
+export const { setEditUserScore } = initialDataSlice.actions;
