@@ -1,10 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "components/Header/Header.module.scss";
 import tablebanner from "assets/banner/tablebanner.png";
+import scorer from "assets/topscorers/man.svg";
+import styles from "components/Header/Header.module.scss";
+import { nanoid } from "nanoid";
+import PropTypes from "prop-types";
+import React from "react";
 import { useSelector } from "react-redux";
 import { dataSelector } from "store/selector/dataSelector";
-import scorer from "assets/topscorers/man.svg";
 
 export const Header = ({ title, draft }) => {
   const data = useSelector(dataSelector);
@@ -17,7 +18,7 @@ export const Header = ({ title, draft }) => {
           <div style={{ display: "flex" }}>
             {data
               .map(({ name, score }) => (
-                <div>
+                <div key={nanoid()}>
                   <div className={styles.header__profile}>
                     <img src={scorer} alt="topscorer" />
                   </div>

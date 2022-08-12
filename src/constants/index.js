@@ -1,1 +1,1 @@
-export const API_URL = "http://coding-test.cube19.io/frontend/v1";
+export const API_URL = "http://coding-test.cube19.io/frontend/v1/starting-state";

@@ -1,8 +1,10 @@
-import { fetchLeaders } from "api/leadersApi";
 import { Button, Header, Heading, Modal, User } from "components";
+import { nanoid } from "nanoid";
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+import { asynchrononousRequest } from "store/actions/setData";
 import { dataSelector } from "store/selector/dataSelector";
 
 const Home = () => {
@@ -16,8 +18,8 @@ const Home = () => {
     setModal(false);
   };
   useEffect(() => {
-    dispatch(fetchLeaders());
-  }, [data]);
+    dispatch(asynchrononousRequest());
+  }, []);
   return (
     <main>
       <Heading name="Cube" highlighted={19} title="Leaderboard" />
@@ -33,6 +35,7 @@ const Home = () => {
         <ul>
           {data.map(({ name, score, rank }) => (
             <User
+              key={nanoid()}
               rank={rank}
               score={score}
               name={name}
