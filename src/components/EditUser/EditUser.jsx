@@ -1,12 +1,12 @@
 import close from "assets/icons/close.svg";
 import { Button } from "components/Button";
-import styles from "components/Modal/Modal.module.scss";
+import styles from "components/EditUser/EditUser.module.scss";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setEditUserScore } from "store/leadersSlice/leadersSlice";
 
-export const Modal = ({ onHandleModalClose, id }) => {
+export const EditUser = ({ onHandleModalClose, id }) => {
   const dispatch = useDispatch();
   const [editScore, setEditScore] = useState({
     name: "",
@@ -51,18 +51,18 @@ export const Modal = ({ onHandleModalClose, id }) => {
           />
         </label>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button title="Save" onClick={onHandleSendData} />
+          <Button title="Save" bckgColor="#F99746" padding="6px 24px" onClick={onHandleSendData} />
         </div>
       </form>
     </div>
   );
 };
 
-Modal.propTypes = {
+EditUser.propTypes = {
   onHandleModalClose: PropTypes.func,
   id: PropTypes.string,
 };
-Modal.defaultProps = {
+EditUser.defaultProps = {
   onHandleModalClose: PropTypes.func,
   id: PropTypes.string,
 };

@@ -13,17 +13,17 @@ export const Button = ({ title, onClick, padding, bckgColor, color }) => (
 );
 
 Button.propTypes = {
+  padding: PropTypes.string,
   title: PropTypes.string,
   onClick: PropTypes.func,
-  padding: PropTypes.string,
-  bckgColor: PropTypes.string,
   color: PropTypes.string,
+  bckgColor: PropTypes.string,
 };
 
 Button.defaultProps = {
   padding: PropTypes.string,
-  bckgColor: PropTypes.bckgColor,
   title: PropTypes.string,
   onClick: PropTypes.func,
   color: PropTypes.string,
+  bckgColor: PropTypes.string,
 };

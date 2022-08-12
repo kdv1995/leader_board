@@ -23,6 +23,9 @@ const initialDataSlice = createSlice({
         })
         .sort((a, b) => b.score - a.score);
     },
+    setAddNewUser: (state, action) => {
+      state.data = state.data.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(asynchrononousRequest.fulfilled, (state, { payload }) => {
@@ -51,4 +54,4 @@ const initialDataSlice = createSlice({
 });
 
 export default initialDataSlice.reducer;
-export const { setEditUserScore } = initialDataSlice.actions;
+export const { setEditUserScore, setAddNewUser } = initialDataSlice.actions;
