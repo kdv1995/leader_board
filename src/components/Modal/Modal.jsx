@@ -10,7 +10,7 @@ export const Modal = ({ onHandleModalClose, id }) => {
   const dispatch = useDispatch();
   const [editScore, setEditScore] = useState({
     name: "",
-    score: 0,
+    score: "",
     id: id,
   });
   const onHandleChange = (event, key) => {
@@ -60,9 +60,9 @@ export const Modal = ({ onHandleModalClose, id }) => {
 
 Modal.propTypes = {
   onHandleModalClose: PropTypes.func,
-  id: PropTypes.number,
+  id: PropTypes.string,
 };
 Modal.defaultProps = {
   onHandleModalClose: PropTypes.func,
-  id: PropTypes.number,
+  id: PropTypes.string,
 };

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
 import edit from "assets/icons/edit.svg";
-import PropTypes from "prop-types";
-import styles from "components/User/User.module.scss";
 import profilePhoto from "assets/persons/mark.svg";
 import { Modal } from "components/Modal";
+import styles from "components/UserRow/UserRow.module.scss";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
-export const User = ({ id, rank, name, score, difference }) => {
+export const UserRow = ({ id, name, score, difference, index }) => {
   const [modal, setModal] = useState(false);
   const onHanldeModalOpen = () => {
     setModal(true);
@@ -14,23 +14,23 @@ export const User = ({ id, rank, name, score, difference }) => {
     setModal(false);
   };
   return (
-    <li className={styles.user__container}>
-      <span className={styles.user__rank}>{rank}</span>
+    <tr className={styles.user__container}>
+      <td className={styles.user__rank}>{index + 1}</td>
       <img src={profilePhoto} alt="mark" />
-      <span className={styles.user__score}>{score}</span>
-      <span className={styles.user__name}>{name}</span>
-      <span className={styles.user__difference}>{difference}</span>
+      <td className={styles.user__score}>{score}</td>
+      <td className={styles.user__name}>{name}</td>
+      <td className={styles.user__difference}>{difference}</td>
       <button type="button" onClick={onHanldeModalOpen}>
         <img src={edit} alt="edit" />
       </button>
       {modal && <Modal id={id} onHandleModalClose={onHandleModalClose} />}
-    </li>
+    </tr>
   );
 };
 
-User.propTypes = {
-  id: PropTypes.number.isRequired,
-  rank: PropTypes.number.isRequired,
+UserRow.propTypes = {
+  index: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   difference: PropTypes.string.isRequired,

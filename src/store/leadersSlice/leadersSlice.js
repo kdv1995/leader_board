@@ -1,4 +1,6 @@
+/* eslint-disable no-confusing-arrow */
 import { createSlice } from "@reduxjs/toolkit";
+import { nanoid } from "nanoid";
 import { asynchrononousRequest } from "store/actions/setData";
 
 const initialDataSlice = createSlice({
@@ -11,16 +13,27 @@ const initialDataSlice = createSlice({
   reducers: {
     setEditUserScore: (state, { payload }) => {
       const { id, name, score } = payload;
-      console.log(payload);
+      const scoreToNumber = Number(score);
+      state.data = state.data
+        .map((user) => {
+          if (user.id === id && user.name === name) {
+            return { ...user, name: name, score: scoreToNumber };
+          }
+          return user;
+        })
+        .sort((a, b) => b.score - a.score);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(asynchrononousRequest.fulfilled, (state, { payload }) => {
       state.data = payload
+        .map((item) => ({
+          ...item,
+          name: item.name.charAt(0).toUpperCase() + item.name.slice(1),
+          id: nanoid(),
+        }))
         .map((item) => (item.score ? item : { ...item, score: 0 }))
-        .map((item) => ({ ...item, name: item.name.charAt(0).toUpperCase() + item.name.slice(1) }))
-        .sort((a, b) => b.score - a.score)
-        .map((item, index) => ({ ...item, rank: index + 1, id: index + 1 }));
+        .sort((a, b) => b.score - a.score);
       state.fetching = false;
     });
     builder.addCase(asynchrononousRequest.rejected, (state, { payload, error }) => {
