@@ -10,7 +10,7 @@ export const AddUser = ({ setUserActive }) => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     name: "",
-    score: "",
+    score: 0,
     id: nanoid(),
   });
   const onHandleNewUser = (event, key) => {

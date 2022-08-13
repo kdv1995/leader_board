@@ -24,7 +24,8 @@ const initialDataSlice = createSlice({
         .sort((a, b) => b.score - a.score);
     },
     setAddNewUser: (state, { payload }) => {
-      state.data = state.data.push(payload);
+      state.data.push(payload);
+      state.data = state.data.sort((a, b) => b.score - a.score);
     },
   },
   extraReducers: (builder) => {
