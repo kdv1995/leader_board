@@ -1,18 +1,15 @@
 import edit from "assets/icons/edit.svg";
 import profilePhoto from "assets/persons/mark.svg";
-import { EditUser } from "components/EditUser";
-
 import styles from "components/UserRow/UserRow.module.scss";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
+import { EditScore } from "components/EditScore";
 
 export const UserRow = ({ id, name, score, difference, index }) => {
-  const [modal, setModal] = useState(false);
-  const onHanldeModalOpen = () => {
-    setModal(true);
-  };
-  const onHandleModalClose = () => {
-    setModal(false);
+  const [editScoreActive, setEditScoreActive] = useState(false);
+
+  const onHandleEditScoreActive = () => {
+    setEditScoreActive(true);
   };
   return (
     <tr className={styles.user__container}>
@@ -24,19 +21,27 @@ export const UserRow = ({ id, name, score, difference, index }) => {
       <td className={styles.user__name}>{name}</td>
       <td className={styles.user__difference}>{difference}</td>
       <td>
-        <button type="button" onClick={onHanldeModalOpen}>
+        <button type="button" onClick={onHandleEditScoreActive}>
           <img src={edit} alt="edit" />
         </button>
       </td>
-      {modal && <EditUser id={id} onHandleModalClose={onHandleModalClose} />}
+      {editScoreActive && <EditScore setActive={onHandleEditScoreActive} id={id} />}
     </tr>
   );
 };
 
 UserRow.propTypes = {
-  index: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  score: PropTypes.number.isRequired,
-  difference: PropTypes.string.isRequired,
+  index: PropTypes.number,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  score: PropTypes.number,
+  difference: PropTypes.string,
+};
+
+UserRow.defaultProps = {
+  index: PropTypes.number,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  score: PropTypes.number,
+  difference: PropTypes.string,
 };

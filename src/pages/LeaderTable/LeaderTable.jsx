@@ -1,31 +1,21 @@
-import { UserRow, Button } from "components";
+import { UserRow, Button, AddUser } from "components";
 import { nanoid } from "nanoid";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { asynchrononousRequest } from "store/actions/setData";
-import { setAddNewUser } from "store/leadersSlice/leadersSlice";
+
 import { dataSelector } from "store/selector/dataSelector";
 
 export const LeaderTable = () => {
   const data = useSelector(dataSelector);
   const dispatch = useDispatch();
-  const [newUser, setNewUser] = useState({
-    name: "",
-    score: "",
-    id: nanoid(),
-  });
+  const [userActive, setUserActive] = useState(false);
+  const onHandleUserActive = () => {
+    setUserActive(true);
+  };
   useEffect(() => {
     dispatch(asynchrononousRequest());
   }, []);
-  const onHandleNewUserData = (event, key) => {
-    setNewUser((prevState) => ({
-      ...prevState,
-      [key]: event.target.value,
-    }));
-  };
-  const addNewUser = () => {
-    dispatch(setAddNewUser(newUser));
-  };
   return (
     <>
       <div className="Home__container">
@@ -39,32 +29,12 @@ export const LeaderTable = () => {
             bckgColor="#1E3CA9"
             color="#fff"
             padding="6px 24px"
-            onClick={addNewUser}
+            onClick={onHandleUserActive}
           />
-          <form style={{ position: "absolute", top: "50%", left: "50%" }}>
-            <label htmlFor="name">
-              <input
-                type="text"
-                value={newUser.name}
-                name="name"
-                onChange={(event) => onHandleNewUserData(event, "name")}
-              />
-            </label>
-            <label htmlFor="points">
-              <input
-                type="number"
-                score="score"
-                value={newUser.score}
-                onChange={(event) => onHandleNewUserData(event, "score")}
-              />
-            </label>
-            <button type="button" onClick={addNewUser}>
-              Add user
-            </button>
-          </form>
+          {userActive && <AddUser setUserActive={setUserActive} />}
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div>
         <table style={{ width: "714px" }}>
           <tbody>
             {data.map(({ name, score, id }, index) => (
