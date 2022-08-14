@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { fetchLeaders } from "store/actions/setData";
+import { fetchLeaders } from "store/actions/fetchLeaders";
 
 import { dataSelector } from "store/selector/dataSelector";
 

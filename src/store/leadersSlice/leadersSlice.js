@@ -1,7 +1,6 @@
-/* eslint-disable no-confusing-arrow */
 import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "nanoid";
-import { fetchLeaders } from "store/actions/setData";
+import { fetchLeaders } from "store/actions/fetchLeaders";
 
 const initialDataSlice = createSlice({
   name: "leadersSlice",
@@ -48,7 +47,7 @@ const initialDataSlice = createSlice({
       }
       state.fetching = false;
     });
-    builder.addCase(fetchLeaders.pending, (state, { payload }) => {
+    builder.addCase(fetchLeaders.pending, (state) => {
       state.fetching = true;
     });
   },
