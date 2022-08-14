@@ -1,67 +1,84 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import styles from "components/EditScore/EditScore.module.scss";
+import styles from "components/EditUser/EditUser.module.scss";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-
+import { Heading } from "components/Heading";
 import { Button } from "components/Button";
 import { useDispatch } from "react-redux";
 import { setEditUserScore } from "store/leadersSlice/leadersSlice";
+import close from "assets/icons/close.svg";
 
-export const EditScore = ({ id, setActive }) => {
+export const EditUser = ({ id, setActive }) => {
   const dispatch = useDispatch();
-  const [editScore, setEditScore] = useState({
+  const [editUser, setEditUser] = useState({
     name: "",
     score: "",
     id: id,
   });
   const onHandleEditScore = (event, key) => {
-    setEditScore((prevState) => ({
+    setEditUser((prevState) => ({
       ...prevState,
       [key]: event.target.value,
     }));
   };
   const onHandleFormData = () => {
-    dispatch(setEditUserScore(editScore));
+    dispatch(setEditUserScore(editUser));
     setActive(false);
   };
+  const onHandleEditScoreClose = () => {
+    setActive(false);
+  };
+
   return (
     <div className={styles.modal}>
       <div className={styles.modal__content}>
-        <form className={styles.form}>
-          <label className={styles.form__label} htmlFor="name">
+        <form className={styles.editUser__form}>
+          <Heading title="Edit score" color="#000" />
+          <button
+            className={styles.editUser__button}
+            type="button"
+            onClick={onHandleEditScoreClose}>
+            <img src={close} alt="close" />
+          </button>
+          <label className={styles.editUser__label} htmlFor="name">
             <input
-              className={styles.form__input}
+              className={styles.editUser__input}
               type="text"
-              value={editScore.name}
+              value={editUser.name}
               name="name"
               placeholder="Name"
               onChange={(event) => onHandleEditScore(event, "name")}
             />
           </label>
-          <label className={styles.form__label} htmlFor="points">
+          <label className={styles.editUser__label} htmlFor="points">
             <input
-              className={styles.form__input}
+              className={styles.editUser__input}
               type="number"
-              value={editScore.score}
+              value={editUser.score}
               score="score"
               placeholder="Points"
               onChange={(event) => onHandleEditScore(event, "score")}
             />
           </label>
-          <Button title="Save" onClick={onHandleFormData} />
+          <Button
+            title="Save"
+            onClick={onHandleFormData}
+            padding="6px 24px"
+            bckgColor="#F99746"
+            color="#000"
+          />
         </form>
       </div>
     </div>
   );
 };
 
-EditScore.propTypes = {
+EditUser.propTypes = {
   id: PropTypes.string,
-
   setActive: PropTypes.func,
 };
-EditScore.defaultProps = {
+EditUser.defaultProps = {
   id: PropTypes.string,
   setActive: PropTypes.func,
 };

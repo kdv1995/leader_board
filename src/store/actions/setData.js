@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { API_URL } from "constants";
 
-export const asynchrononousRequest = createAsyncThunk("request", async (_, { rejectWithValue }) => {
+export const fetchLeaders = createAsyncThunk("request", async (_, { rejectWithValue }) => {
   try {
     const response = await fetch(API_URL).then((res) => res.json());
     return response;

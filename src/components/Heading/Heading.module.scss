@@ -1,21 +1,9 @@
 .heading {
   margin-bottom: 20px;
-  &__name {
-    color: #030327;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 27px;
-  }
-  &__highlighted {
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 27px;
-    color: #f99746;
-  }
-  &__title {
-    color: #030327;
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 27px;
-  }
+
+  text-align: center;
+  color: #030327;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 27px;
 }

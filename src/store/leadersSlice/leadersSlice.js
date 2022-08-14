@@ -1,7 +1,7 @@
 /* eslint-disable no-confusing-arrow */
 import { createSlice } from "@reduxjs/toolkit";
 import { nanoid } from "nanoid";
-import { asynchrononousRequest } from "store/actions/setData";
+import { fetchLeaders } from "store/actions/setData";
 
 const initialDataSlice = createSlice({
   name: "leadersSlice",
@@ -29,7 +29,7 @@ const initialDataSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(asynchrononousRequest.fulfilled, (state, { payload }) => {
+    builder.addCase(fetchLeaders.fulfilled, (state, { payload }) => {
       state.data = payload
         .map((item) => ({
           ...item,
@@ -40,7 +40,7 @@ const initialDataSlice = createSlice({
         .sort((a, b) => b.score - a.score);
       state.fetching = false;
     });
-    builder.addCase(asynchrononousRequest.rejected, (state, { payload, error }) => {
+    builder.addCase(fetchLeaders.rejected, (state, { payload, error }) => {
       if (payload) {
         state.error = payload.errorMessage;
       } else {
@@ -48,7 +48,7 @@ const initialDataSlice = createSlice({
       }
       state.fetching = false;
     });
-    builder.addCase(asynchrononousRequest.pending, (state, { payload }) => {
+    builder.addCase(fetchLeaders.pending, (state, { payload }) => {
       state.fetching = true;
     });
   },

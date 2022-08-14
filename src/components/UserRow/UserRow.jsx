@@ -3,7 +3,7 @@ import profilePhoto from "assets/persons/mark.svg";
 import styles from "components/UserRow/UserRow.module.scss";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-import { EditScore } from "components/EditScore";
+import { EditUser } from "components/EditUser";
 
 export const UserRow = ({ id, name, score, difference, index }) => {
   const [editScoreActive, setEditScoreActive] = useState(false);
@@ -25,7 +25,7 @@ export const UserRow = ({ id, name, score, difference, index }) => {
           <img src={edit} alt="edit" />
         </button>
       </td>
-      {editScoreActive && <EditScore setActive={onHandleEditScoreActive} id={id} />}
+      {editScoreActive && <EditUser setActive={onHandleEditScoreActive} id={id} />}
     </tr>
   );
 };

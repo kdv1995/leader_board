@@ -1,10 +1,12 @@
+import close from "assets/icons/close.svg";
+import styles from "components/AddUser/AddUser.module.scss";
+import { Button } from "components/Button";
+import { Heading } from "components/Heading";
+import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button } from "components/Button";
-import { nanoid } from "nanoid";
 import { setAddNewUser } from "store/leadersSlice/leadersSlice";
-import styles from "components/AddUser/AddUser.module.scss";
 
 export const AddUser = ({ setUserActive }) => {
   const dispatch = useDispatch();
@@ -23,12 +25,20 @@ export const AddUser = ({ setUserActive }) => {
     dispatch(setAddNewUser(user));
     setUserActive(false);
   };
+  const onHandleNewUserClose = () => {
+    setUserActive(false);
+  };
   return (
     <div className={styles.user}>
       <div className={styles.user__content}>
-        <form>
-          <label htmlFor="name">
+        <form className={styles.addUser__form}>
+          <Heading title="Add new user" color="#000" />
+          <button className={styles.addUser__button} type="button" onClick={onHandleNewUserClose}>
+            <img src={close} alt="close" />
+          </button>
+          <label htmlFor="name" className={styles.addUser__label}>
             <input
+              className={styles.addUser__input}
               type="text"
               value={user.name}
               name="name"
@@ -36,8 +46,9 @@ export const AddUser = ({ setUserActive }) => {
               onChange={(event) => onHandleNewUser(event, "name")}
             />
           </label>
-          <label htmlFor="points">
+          <label htmlFor="points" className={styles.addUser__label}>
             <input
+              className={styles.addUser__input}
               type="number"
               value={user.score}
               score="score"
@@ -45,7 +56,12 @@ export const AddUser = ({ setUserActive }) => {
               onChange={(event) => onHandleNewUser(event, "score")}
             />
           </label>
-          <Button title="Add user" onClick={onHandleSendNewUser} />
+          <Button
+            title="Save"
+            onClick={onHandleSendNewUser}
+            padding="6px 24px"
+            bckgColor="#F99746"
+          />
         </form>
       </div>
     </div>
