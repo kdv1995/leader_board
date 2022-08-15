@@ -25,7 +25,7 @@ export const UserRow = ({ id, name, score, difference, index }) => {
           <img src={edit} alt="edit" />
         </button>
       </td>
-      {editScoreActive && <EditUser setActive={onHandleEditScoreActive} id={id} />}
+      {editScoreActive && <EditUser setActive={setEditScoreActive} id={id} />}
     </tr>
   );
 };
