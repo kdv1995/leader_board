@@ -10,13 +10,13 @@ export const TableBody = () => {
   return (
     <table className={styles.table__body}>
       <tbody>
-        {data.map(({ name, score, id }, index) => (
+        {data.map(({ name, score, id, difference }, index) => (
           <UserRow
             key={nanoid()}
             id={id}
             score={score}
             name={name}
-            difference="places"
+            difference={difference}
             index={index}
           />
         ))}

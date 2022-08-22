@@ -59,13 +59,15 @@ export const EditUser = ({ id, setActive }) => {
               onChange={(event) => onHandleEditScore(event, 'score')}
             />
           </label>
-          <Button
-            title="Save"
-            onClick={onHandleFormData}
-            padding="6px 24px"
-            bckgColor="#F99746"
-            color="#000"
-          />
+          <div className={styles.editUser__container}>
+            <Button
+              title="Save"
+              onClick={onHandleFormData}
+              padding="6px 24px"
+              bckgColor="#F99746"
+              color="#000"
+            />
+          </div>
         </form>
       </div>
     </div>

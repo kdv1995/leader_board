@@ -8,7 +8,6 @@ import { TableBody } from 'pages/LeaderTable/TableBody/TableBody';
 
 export const LeaderTable = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(postLeader());
     dispatch(fetchLeaders());

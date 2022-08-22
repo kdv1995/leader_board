@@ -58,7 +58,9 @@ export const AddUser = ({ setUserActive }) => {
               onChange={(event) => onHandleNewUser(event, 'score')}
             />
           </label>
-          <Button title="Save" onClick={onHandleSendNewUser} bckgColor="#F99746" color="#000" />
+          <div className={styles.addUser__container}>
+            <Button title="Save" onClick={onHandleSendNewUser} bckgColor="#F99746" color="#000" />
+          </div>
         </form>
       </div>
     </div>

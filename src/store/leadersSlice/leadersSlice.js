@@ -16,7 +16,11 @@ const initialDataSlice = createSlice({
       state.data = state.data
         .map((user) => {
           if (user.id === id && user.name === name) {
-            return { ...user, name: name, score: scoreToNumber };
+            return {
+              ...user,
+              name: name,
+              score: scoreToNumber,
+            };
           }
           return user;
         })
@@ -37,6 +41,7 @@ const initialDataSlice = createSlice({
           ...item,
           name: item.name.charAt(0).toUpperCase() + item.name.slice(1),
           id: nanoid(),
+          difference: 'No change',
         }))
         .map((item) => (item.score ? item : { ...item, score: 0 }))
         .sort((a, b) => b.score - a.score);

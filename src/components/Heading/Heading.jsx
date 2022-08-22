@@ -1,10 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "components/Heading/Heading.module.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from 'components/Heading/Heading.module.scss';
 
-export const Heading = ({ title }) => {
-  return <h1 className={styles.heading}>{title}</h1>;
-};
+export const Heading = ({ title }) => <h1 className={styles.heading}>{title}</h1>;
 
 Heading.propTypes = {
   title: PropTypes.string,

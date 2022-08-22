@@ -13,9 +13,13 @@
   background: #f6f6f6;
   border: 1px solid #dddddd;
   border-radius: 10px;
-  background: url("../../assets/banner/modalbanner.jpg") center center;
+  background: url('../../assets/banner/modalbanner.jpg') center center;
 }
 .addUser {
+  &__container {
+    display: flex;
+    justify-content: center;
+  }
   &__form {
     position: relative;
     display: flex;

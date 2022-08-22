@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AddUser, Button } from 'components';
+import { AddUser, Button, HistoryButton } from 'components';
 
 export const TableHeader = () => {
   const [userActive, setUserActive] = useState(false);
@@ -9,7 +9,9 @@ export const TableHeader = () => {
   return (
     <div className="Table-heading__container">
       <h3 className="Table-heading__title">Leader table for this period</h3>
-      <Button title="Add new day" bckgColor="#F99746" color="#fff" />
+
+      <HistoryButton title="&lt;&lt;" />
+      <HistoryButton title="&gt;&gt;" />
       <Button title="Add new user" bckgColor="#1E3CA9" color="#fff" onClick={onHandleUserActive} />
       {userActive && <AddUser setUserActive={setUserActive} />}
     </div>
