@@ -1,9 +1,9 @@
-import edit from "assets/icons/edit.svg";
-import profilePhoto from "assets/persons/mark.svg";
-import styles from "components/UserRow/UserRow.module.scss";
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { EditUser } from "components/EditUser";
+import edit from 'assets/icons/edit.svg';
+import profilePhoto from 'assets/persons/mark.svg';
+import styles from 'components/UserRow/UserRow.module.scss';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { EditUser } from 'components/EditUser';
 
 export const UserRow = ({ id, name, score, difference, index }) => {
   const [editScoreActive, setEditScoreActive] = useState(false);

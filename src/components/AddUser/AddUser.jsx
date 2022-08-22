@@ -1,17 +1,17 @@
-import close from "assets/icons/close.svg";
-import styles from "components/AddUser/AddUser.module.scss";
-import { Button } from "components/Button";
-import { Heading } from "components/Heading";
-import { nanoid } from "nanoid";
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setAddNewUser } from "store/leadersSlice/leadersSlice";
+import close from 'assets/icons/close.svg';
+import styles from 'components/AddUser/AddUser.module.scss';
+import { Button } from 'components/Button';
+import { Heading } from 'components/Heading';
+import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setAddNewUser } from 'store/leadersSlice/leadersSlice';
 
 export const AddUser = ({ setUserActive }) => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({
-    name: "",
+    name: '',
     score: 0,
     id: nanoid(),
   });
@@ -43,7 +43,7 @@ export const AddUser = ({ setUserActive }) => {
               value={user.name}
               name="name"
               placeholder="Name"
-              onChange={(event) => onHandleNewUser(event, "name")}
+              onChange={(event) => onHandleNewUser(event, 'name')}
             />
           </label>
           <label htmlFor="points" className={styles.addUser__label}>
@@ -53,15 +53,10 @@ export const AddUser = ({ setUserActive }) => {
               value={user.score}
               score="score"
               placeholder="Points"
-              onChange={(event) => onHandleNewUser(event, "score")}
+              onChange={(event) => onHandleNewUser(event, 'score')}
             />
           </label>
-          <Button
-            title="Save"
-            onClick={onHandleSendNewUser}
-            padding="6px 24px"
-            bckgColor="#F99746"
-          />
+          <Button title="Save" onClick={onHandleSendNewUser} bckgColor="#F99746" color="#000" />
         </form>
       </div>
     </div>

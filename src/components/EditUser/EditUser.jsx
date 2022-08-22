@@ -1,19 +1,17 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-import styles from "components/EditUser/EditUser.module.scss";
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { Heading } from "components/Heading";
-import { Button } from "components/Button";
-import { useDispatch } from "react-redux";
-import { setEditUserScore } from "store/leadersSlice/leadersSlice";
-import close from "assets/icons/close.svg";
+import styles from 'components/EditUser/EditUser.module.scss';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Heading } from 'components/Heading';
+import { Button } from 'components/Button';
+import { useDispatch } from 'react-redux';
+import { setEditUserScore } from 'store/leadersSlice/leadersSlice';
+import close from 'assets/icons/close.svg';
 
 export const EditUser = ({ id, setActive }) => {
   const dispatch = useDispatch();
   const [editUser, setEditUser] = useState({
-    name: "",
-    score: "",
+    name: '',
+    score: '',
     id: id,
   });
   const onHandleEditScore = (event, key) => {
@@ -48,7 +46,7 @@ export const EditUser = ({ id, setActive }) => {
               value={editUser.name}
               name="name"
               placeholder="Name"
-              onChange={(event) => onHandleEditScore(event, "name")}
+              onChange={(event) => onHandleEditScore(event, 'name')}
             />
           </label>
           <label className={styles.editUser__label} htmlFor="points">
@@ -58,7 +56,7 @@ export const EditUser = ({ id, setActive }) => {
               value={editUser.score}
               score="score"
               placeholder="Points"
-              onChange={(event) => onHandleEditScore(event, "score")}
+              onChange={(event) => onHandleEditScore(event, 'score')}
             />
           </label>
           <Button

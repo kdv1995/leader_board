@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { nanoid } from "nanoid";
-import { fetchLeaders } from "store/actions/fetchLeaders";
+import { createSlice } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
+import { fetchLeaders, postLeader } from 'store/actions/fetchLeaders';
 
 const initialDataSlice = createSlice({
-  name: "leadersSlice",
+  name: 'leadersSlice',
   initialState: {
     data: [],
     fetching: false,
@@ -50,6 +50,9 @@ const initialDataSlice = createSlice({
     builder.addCase(fetchLeaders.pending, (state) => {
       state.fetching = true;
     });
+    builder.addCase(postLeader.fulfilled, (state, { payload }) => {});
+    builder.addCase(postLeader.rejected, (state, { payload }) => {});
+    builder.addCase(postLeader.pending, (state, { payload }) => {});
   },
 });
 
