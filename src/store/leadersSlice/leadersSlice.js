@@ -28,6 +28,9 @@ const initialDataSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchLeaders.pending, (state) => {
+      state.fetching = true;
+    });
     builder.addCase(fetchLeaders.fulfilled, (state, { payload }) => {
       state.data = payload
         .map((item) => ({
@@ -47,12 +50,21 @@ const initialDataSlice = createSlice({
       }
       state.fetching = false;
     });
-    builder.addCase(fetchLeaders.pending, (state) => {
+
+    builder.addCase(postLeader.pending, (state) => {
       state.fetching = true;
     });
-    builder.addCase(postLeader.fulfilled, (state, { payload }) => {});
-    builder.addCase(postLeader.rejected, (state, { payload }) => {});
-    builder.addCase(postLeader.pending, (state, { payload }) => {});
+    builder.addCase(postLeader.fulfilled, (state, action) => {
+      state.fetching = action.payload;
+    });
+    builder.addCase(postLeader.rejected, (state, { payload, error }) => {
+      if (payload) {
+        state.error = payload.errorMessage;
+      } else {
+        state.error = error.message;
+      }
+      state.fetching = false;
+    });
   },
 });
 

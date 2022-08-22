@@ -1,7 +1,7 @@
-import { Header, Heading } from "components";
+import { Header, Heading } from 'components';
 
-import { LeaderTable } from "pages/LeaderTable";
-import React from "react";
+import { LeaderTable } from 'pages/LeaderTable/LeaderTable';
+import React from 'react';
 
 export const HomePage = () => {
   return (

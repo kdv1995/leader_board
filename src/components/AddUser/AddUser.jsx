@@ -6,6 +6,7 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { postLeader } from 'store/actions/fetchLeaders';
 import { setAddNewUser } from 'store/leadersSlice/leadersSlice';
 
 export const AddUser = ({ setUserActive }) => {
@@ -24,6 +25,7 @@ export const AddUser = ({ setUserActive }) => {
   const onHandleSendNewUser = () => {
     dispatch(setAddNewUser(user));
     setUserActive(false);
+    dispatch(postLeader(user));
   };
   const onHandleNewUserClose = () => {
     setUserActive(false);
