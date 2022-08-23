@@ -1,6 +1,10 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-confusing-arrow */
 import { createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
-import { fetchLeaders, postLeader } from 'store/actions/fetchLeaders';
+import { fetchLeaders } from 'store/actions/fetchLeaders';
+import { postLeader } from 'store/actions/postLeader';
 
 const initialDataSlice = createSlice({
   name: 'leadersSlice',
@@ -11,23 +15,36 @@ const initialDataSlice = createSlice({
   },
   reducers: {
     setEditUserScore: (state, { payload }) => {
-      const { id, name, score } = payload;
+      const { id, name, score, previousPosition } = payload;
+      console.log(previousPosition);
       const scoreToNumber = Number(score);
       state.data = state.data
-        .map((user) => {
+        .map((user, index) => {
           if (user.id === id && user.name === name) {
             return {
               ...user,
               name: name,
               score: scoreToNumber,
+              difference: `${state.data.length - previousPosition + state.data.length - 1} places`,
             };
           }
           return user;
         })
+        // .map((user, currentPosition) => {
+        //   if (previousPosition > currentPosition) {
+        //     return { ...user, difference: `${previousPosition - currentPosition} places` };
+        //   }
+        //   if (previousPosition < currentPosition) {
+        //     return { ...user, difference: `${previousPosition - currentPosition} places` };
+        //   }
+        //   return { ...user, difference: 'No change' };
+        // })
         .sort((a, b) => b.score - a.score);
     },
     setAddNewUser: (state, { payload }) => {
-      state.data.push(payload);
+      const { id, score, name, different } = payload;
+      const scoreToNumber = Number(score);
+      state.data.push({ id: id, name: name, score: scoreToNumber });
       state.data = state.data.sort((a, b) => b.score - a.score);
     },
   },

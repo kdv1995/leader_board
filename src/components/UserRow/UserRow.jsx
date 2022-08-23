@@ -4,7 +4,6 @@ import styles from 'components/UserRow/UserRow.module.scss';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { EditUser } from 'components/EditUser';
-import classNames from 'classnames';
 
 export const UserRow = ({ id, name, score, difference, index }) => {
   const [editScoreActive, setEditScoreActive] = useState(false);
@@ -26,7 +25,9 @@ export const UserRow = ({ id, name, score, difference, index }) => {
           <img src={edit} alt="edit" />
         </button>
       </td>
-      {editScoreActive && <EditUser setActive={setEditScoreActive} id={id} />}
+      {editScoreActive && (
+        <EditUser setActive={setEditScoreActive} id={id} previousPosition={index} />
+      )}
     </tr>
   );
 };

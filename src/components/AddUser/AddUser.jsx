@@ -6,7 +6,7 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { postLeader } from 'store/actions/fetchLeaders';
+import { postLeader } from 'store/actions/postLeader';
 import { setAddNewUser } from 'store/leadersSlice/leadersSlice';
 
 export const AddUser = ({ setUserActive }) => {
@@ -15,6 +15,7 @@ export const AddUser = ({ setUserActive }) => {
     name: '',
     score: 0,
     id: nanoid(),
+    different: 'No change',
   });
   const onHandleNewUser = (event, key) => {
     setUser((prevState) => ({
