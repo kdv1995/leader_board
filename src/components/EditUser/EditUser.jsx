@@ -7,13 +7,13 @@ import { useDispatch } from 'react-redux';
 import { setEditUserScore } from 'store/leadersSlice/leadersSlice';
 import close from 'assets/icons/close.svg';
 
-export const EditUser = ({ previousPosition, id, setActive }) => {
+export const EditUser = ({ name, score, previousPosition, id, setActive }) => {
   const dispatch = useDispatch();
   const [editUser, setEditUser] = useState({
-    name: '',
-    score: 0,
-    id: id,
-    previousPosition: previousPosition,
+    name,
+    score,
+    id,
+    previousPosition,
   });
   const onHandleEditScore = (event, key) => {
     setEditUser((prevState) => ({
@@ -76,11 +76,15 @@ export const EditUser = ({ previousPosition, id, setActive }) => {
 };
 
 EditUser.propTypes = {
+  name: PropTypes.string,
+  score: PropTypes.number,
   previousPosition: PropTypes.number,
   id: PropTypes.string,
   setActive: PropTypes.func,
 };
 EditUser.defaultProps = {
+  name: PropTypes.string,
+  score: PropTypes.number,
   previousPosition: PropTypes.number,
   id: PropTypes.string,
   setActive: PropTypes.func,

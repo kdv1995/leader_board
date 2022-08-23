@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { EditUser } from 'components/EditUser';
 
-export const UserRow = ({ id, name, score, difference, index }) => {
+export const UserRow = ({ id, name, score, difference, index, previousPosition }) => {
   const [editScoreActive, setEditScoreActive] = useState(false);
 
   const onHandleEditScoreActive = () => {
     setEditScoreActive(true);
   };
+
   return (
     <tr className={styles.user__container}>
       <td className={styles.user__rank}>{index + 1}</td>
@@ -19,14 +20,26 @@ export const UserRow = ({ id, name, score, difference, index }) => {
       </td>
       <td className={styles.user__score}>{score}</td>
       <td className={styles.user__name}>{name}</td>
-      <td className={styles.user__difference}>{difference}</td>
+      {Math.sign(difference) === -1 && difference !== 'No change' && (
+        <td className={styles.down}>{`${difference} places`}</td>
+      )}
+      {Math.sign(difference) === 1 && difference !== 'No change' && (
+        <td className={styles.up}>{`${difference} places`}</td>
+      )}
+      {difference === 'No change' && <td className={styles.user__difference}>{difference}</td>}
       <td>
         <button type="button" onClick={onHandleEditScoreActive}>
           <img src={edit} alt="edit" />
         </button>
       </td>
       {editScoreActive && (
-        <EditUser setActive={setEditScoreActive} id={id} previousPosition={index} />
+        <EditUser
+          setActive={setEditScoreActive}
+          id={id}
+          previousPosition={previousPosition}
+          name={name}
+          score={score}
+        />
       )}
     </tr>
   );
@@ -38,6 +51,7 @@ UserRow.propTypes = {
   name: PropTypes.string,
   score: PropTypes.number,
   difference: PropTypes.string,
+  previousPosition: PropTypes.number,
 };
 
 UserRow.defaultProps = {
@@ -46,4 +60,5 @@ UserRow.defaultProps = {
   name: PropTypes.string,
   score: PropTypes.number,
   difference: PropTypes.string,
+  previousPosition: PropTypes.number,
 };

@@ -7,10 +7,11 @@ import styles from 'pages/LeaderTable/TableBody/TableBody.module.scss';
 
 export const TableBody = () => {
   const leadersList = useSelector(dataSelector);
+  console.log(leadersList);
   return (
     <table className={styles.table__body}>
       <tbody>
-        {leadersList.map(({ name, score, id, difference }, index) => (
+        {leadersList.map(({ name, score, id, difference, place }, index) => (
           <UserRow
             key={nanoid()}
             id={id}
@@ -18,7 +19,7 @@ export const TableBody = () => {
             name={name}
             difference={difference}
             index={index}
-            previousPosition={index}
+            previousPosition={place}
           />
         ))}
       </tbody>

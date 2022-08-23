@@ -16,36 +16,44 @@ const initialDataSlice = createSlice({
   reducers: {
     setEditUserScore: (state, { payload }) => {
       const { id, name, score, previousPosition } = payload;
-      console.log(previousPosition);
       const scoreToNumber = Number(score);
       state.data = state.data
-        .map((user, index) => {
+        .map((user) => {
           if (user.id === id && user.name === name) {
             return {
               ...user,
               name: name,
               score: scoreToNumber,
-              difference: `${state.data.length - previousPosition + state.data.length - 1} places`,
             };
           }
           return user;
         })
-        // .map((user, currentPosition) => {
-        //   if (previousPosition > currentPosition) {
-        //     return { ...user, difference: `${previousPosition - currentPosition} places` };
-        //   }
-        //   if (previousPosition < currentPosition) {
-        //     return { ...user, difference: `${previousPosition - currentPosition} places` };
-        //   }
-        //   return { ...user, difference: 'No change' };
-        // })
-        .sort((a, b) => b.score - a.score);
+        .sort((a, b) => b.score - a.score)
+        .map((user, index) => {
+          const currentIndex = index + 1;
+          if (user.id === id) {
+            return {
+              ...user,
+              difference:
+                previousPosition < currentIndex
+                  ? previousPosition - currentIndex
+                  : previousPosition - currentIndex,
+              place: currentIndex,
+            };
+          }
+          return {
+            ...user,
+            place: currentIndex,
+          };
+        });
     },
     setAddNewUser: (state, { payload }) => {
-      const { id, score, name, different } = payload;
+      const { id, score, name, difference } = payload;
       const scoreToNumber = Number(score);
-      state.data.push({ id: id, name: name, score: scoreToNumber });
-      state.data = state.data.sort((a, b) => b.score - a.score);
+      state.data.push({ id: id, name: name, score: scoreToNumber, difference: difference });
+      state.data = state.data
+        .sort((a, b) => b.score - a.score)
+        .map((item, currentIndex) => ({ ...item, place: currentIndex + 1 }));
     },
   },
   extraReducers: (builder) => {
@@ -59,9 +67,10 @@ const initialDataSlice = createSlice({
           name: item.name.charAt(0).toUpperCase() + item.name.slice(1),
           id: nanoid(),
           difference: 'No change',
+          score: item.score ? item.score : 0,
         }))
-        .map((item) => (item.score ? item : { ...item, score: 0 }))
-        .sort((a, b) => b.score - a.score);
+        .sort((a, b) => b.score - a.score)
+        .map((item, currentIndex) => ({ ...item, place: currentIndex + 1 }));
       state.fetching = false;
     });
     builder.addCase(fetchLeaders.rejected, (state, { payload, error }) => {
