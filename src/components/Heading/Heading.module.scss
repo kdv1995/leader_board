@@ -1,9 +1,10 @@
 .heading {
   margin-bottom: 20px;
-
-  text-align: center;
   color: #030327;
   font-weight: 600;
   font-size: 22px;
   line-height: 27px;
+  &__highlighted {
+    color: #f99746;
+  }
 }

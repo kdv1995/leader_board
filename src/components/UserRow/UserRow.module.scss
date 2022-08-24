@@ -32,10 +32,13 @@
 .user__difference {
   padding-right: 7px;
   color: #f99746;
-}
-.down {
-  color: #b64c41;
-}
-.up {
-  color: #40a3c4;
+  &_down {
+    color: #b64c41;
+  }
+  &_up {
+    color: #40a3c4;
+  }
+  &_new {
+    color: rgb(7, 139, 0);
+  }
 }

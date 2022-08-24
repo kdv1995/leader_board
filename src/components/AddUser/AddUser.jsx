@@ -15,7 +15,7 @@ export const AddUser = ({ setUserActive }) => {
     name: '',
     score: 0,
     id: nanoid(),
-    difference: 'No change',
+    difference: 'New user',
   });
   const onHandleNewUser = (event, key) => {
     setUser((prevState) => ({

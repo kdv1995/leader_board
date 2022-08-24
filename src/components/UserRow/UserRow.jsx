@@ -21,12 +21,13 @@ export const UserRow = ({ id, name, score, difference, index, previousPosition }
       <td className={styles.user__score}>{score}</td>
       <td className={styles.user__name}>{name}</td>
       {Math.sign(difference) === -1 && difference !== 'No change' && (
-        <td className={styles.down}>{`${difference} places`}</td>
+        <td className={styles.user__difference_down}>{`${difference} places`}</td>
       )}
       {Math.sign(difference) === 1 && difference !== 'No change' && (
-        <td className={styles.up}>{`${difference} places`}</td>
+        <td className={styles.user__difference_up}>{`${difference} places`}</td>
       )}
       {difference === 'No change' && <td className={styles.user__difference}>{difference}</td>}
+      {difference === 'New user' && <td className={styles.user__difference_new}>{difference}</td>}
       <td>
         <button type="button" onClick={onHandleEditScoreActive}>
           <img src={edit} alt="edit" />
