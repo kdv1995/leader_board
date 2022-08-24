@@ -12,7 +12,7 @@ const initialDataSlice = createSlice({
     data: [],
     fetching: false,
     error: null,
-    history: [],
+    history: {},
   },
   reducers: {
     setEditUserScore: (state, { payload }) => {
@@ -45,9 +45,9 @@ const initialDataSlice = createSlice({
           return {
             ...user,
             place: currentIndex,
+            difference: user.place === currentIndex ? 'No change' : user.place - currentIndex,
           };
         });
-      state.history.push({ id: nanoid(), data: state.data });
     },
     setAddNewUser: (state, { payload }) => {
       const { id, score, name, difference } = payload;
@@ -56,7 +56,6 @@ const initialDataSlice = createSlice({
       state.data = state.data
         .sort((a, b) => b.score - a.score)
         .map((item, currentIndex) => ({ ...item, place: currentIndex + 1 }));
-      state.history.push({ id: nanoid(), data: state.data });
     },
   },
   extraReducers: (builder) => {

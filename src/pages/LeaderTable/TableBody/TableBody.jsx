@@ -4,9 +4,12 @@ import { UserRow } from 'components';
 import { useSelector } from 'react-redux';
 import { dataSelector } from 'store/selector/dataSelector';
 import styles from 'pages/LeaderTable/TableBody/TableBody.module.scss';
+import { historySelector } from 'store/selector/historySelector';
 
 export const TableBody = () => {
   const leadersList = useSelector(dataSelector);
+  const history = useSelector(historySelector);
+  console.log(history);
   return (
     <table className={styles.table__body}>
       <tbody>
