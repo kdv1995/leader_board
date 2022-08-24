@@ -51,7 +51,7 @@ UserRow.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   score: PropTypes.number,
-  difference: PropTypes.string,
+  difference: PropTypes.number,
   previousPosition: PropTypes.number,
 };
 
@@ -60,6 +60,6 @@ UserRow.defaultProps = {
   id: PropTypes.string,
   name: PropTypes.string,
   score: PropTypes.number,
-  difference: PropTypes.string,
+  difference: PropTypes.number,
   previousPosition: PropTypes.number,
 };

@@ -7,7 +7,6 @@ import styles from 'pages/LeaderTable/TableBody/TableBody.module.scss';
 
 export const TableBody = () => {
   const leadersList = useSelector(dataSelector);
-  console.log(leadersList);
   return (
     <table className={styles.table__body}>
       <tbody>

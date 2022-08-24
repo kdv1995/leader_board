@@ -4,4 +4,5 @@ export * from './Header';
 export * from './Heading';
 export * from './UserRow';
 export * from './AddUser';
-export * from './HistoryButton';
+export * from './HistoryBack';
+export * from './HistoryForward';
