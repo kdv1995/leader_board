@@ -1,7 +1,9 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-confusing-arrow */
 import { createSlice } from '@reduxjs/toolkit';
+
 import { nanoid } from 'nanoid';
 import { fetchLeaders } from 'store/actions/fetchLeaders';
 import { postLeader } from 'store/actions/postLeader';
