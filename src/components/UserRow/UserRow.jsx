@@ -28,7 +28,6 @@ export const UserRow = ({ id, name, score, difference, index, previousPosition }
       )}
       {difference === 'No change' && <td className={styles.user__difference}>{difference}</td>}
       {difference === 'New user' && <td className={styles.user__difference_new}>{difference}</td>}
-      {difference === 1 && <td>{`${difference} place`}</td>}
       <td>
         <button type="button" onClick={onHandleEditScoreActive}>
           <img src={edit} alt="edit" />

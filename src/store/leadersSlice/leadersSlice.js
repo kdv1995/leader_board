@@ -14,7 +14,6 @@ const initialDataSlice = createSlice({
     data: [],
     fetching: false,
     error: null,
-    history: {},
   },
   reducers: {
     setEditUserScore: (state, { payload }) => {
