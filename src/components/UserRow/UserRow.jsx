@@ -16,29 +16,33 @@ export const UserRow = ({ id, name, score, difference, index, previousPosition }
   };
 
   return (
-    <tr className={styles.user__container}>
-      <td className={styles.user__rank}>{index + 1}</td>
-      <td>
-        <img src={profilePhoto} alt="mark" />
-      </td>
-      <td className={styles.user__score}>{score}</td>
-      <td className={styles.user__name}>{name}</td>
-      {difference === 'No change' && <td className={styles.user__difference}>{difference}</td>}
-      {difference === 0 && <td className={styles.user__difference}>No change</td>}
-      {difference === 'New user' && <td className={styles.user__difference_new}>{difference}</td>}
-      {difference === 1 && <td className={styles.user__difference_up}>{`${difference} place`}</td>}
-      {difference === -1 && (
-        <td className={styles.user__difference_down}>{`${difference} place`}</td>
-      )}
-      {difference > 1 && <td className={styles.user__difference_up}>{`${difference} places`}</td>}
-      {difference < -1 && (
-        <td className={styles.user__difference_down}>{`${difference} places`}</td>
-      )}
-      <td>
-        <button type="button" onClick={onHandleEditScoreActive}>
-          <img src={edit} alt="edit" />
-        </button>
-      </td>
+    <>
+      <tr className={styles.user__container}>
+        <td className={styles.user__rank}>{index + 1}</td>
+        <td>
+          <img src={profilePhoto} alt="mark" />
+        </td>
+        <td className={styles.user__score}>{score}</td>
+        <td className={styles.user__name}>{name}</td>
+        {difference === 'No change' && <td className={styles.user__difference}>{difference}</td>}
+        {difference === 0 && <td className={styles.user__difference}>No change</td>}
+        {difference === 'New user' && <td className={styles.user__difference_new}>{difference}</td>}
+        {difference === 1 && (
+          <td className={styles.user__difference_up}>{`${difference} place`}</td>
+        )}
+        {difference === -1 && (
+          <td className={styles.user__difference_down}>{`${difference} place`}</td>
+        )}
+        {difference > 1 && <td className={styles.user__difference_up}>{`${difference} places`}</td>}
+        {difference < -1 && (
+          <td className={styles.user__difference_down}>{`${difference} places`}</td>
+        )}
+        <td>
+          <button type="button" onClick={onHandleEditScoreActive}>
+            <img src={edit} alt="edit" />
+          </button>
+        </td>
+      </tr>
       {editScoreActive && (
         <EditUser
           setActive={setEditScoreActive}
@@ -48,7 +52,7 @@ export const UserRow = ({ id, name, score, difference, index, previousPosition }
           score={score}
         />
       )}
-    </tr>
+    </>
   );
 };
 

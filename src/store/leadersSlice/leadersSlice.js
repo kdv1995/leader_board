@@ -52,10 +52,14 @@ const initialDataSlice = createSlice({
             difference: user.place === currentIndex ? 'No change' : user.place - currentIndex,
           };
         });
+      const lastHistoryStep = Number(
+        Object.keys(state.history)[Object.keys(state.history).length - 1].replace(/\D/g, ''),
+      );
       state.history = {
         ...state.history,
-        [`day_${(state.historyStep += 1)}`]: state.data,
+        [`day_${lastHistoryStep + 1}`]: state.data,
       };
+      state.historyStep = lastHistoryStep + 1;
     },
     setAddNewUser: (state, { payload }) => {
       const { id, score, name, difference } = payload;
@@ -64,10 +68,14 @@ const initialDataSlice = createSlice({
       state.data = state.data
         .sort((a, b) => b.score - a.score)
         .map((item, currentIndex) => ({ ...item, place: currentIndex + 1 }));
+      const lastHistoryStep = Number(
+        Object.keys(state.history)[Object.keys(state.history).length - 1].replace(/\D/g, ''),
+      );
       state.history = {
         ...state.history,
-        [`day_${(state.historyStep += 1)}`]: state.data,
+        [`day_${lastHistoryStep + 1}`]: state.data,
       };
+      state.historyStep = lastHistoryStep + 1;
     },
     setPreviousHistoryStep: (state) => {
       state.data = state.history[`day_${(state.historyStep -= 1)}`];

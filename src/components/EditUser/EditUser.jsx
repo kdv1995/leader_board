@@ -16,7 +16,8 @@ export const EditUser = ({ name, score, previousPosition, id, setActive }) => {
     id,
     previousPosition,
   });
-  const onHandleEditScore = (event, key) => {
+  const onHandleEditScore = (event) => {
+    const key = event.name;
     setEditUser((prevState) => ({
       ...prevState,
       [key]: Number(event.target.value),
@@ -48,17 +49,17 @@ export const EditUser = ({ name, score, previousPosition, id, setActive }) => {
               value={editUser.name}
               name="name"
               placeholder="Name"
-              onChange={(event) => onHandleEditScore(event, 'name')}
+              onChange={(event) => onHandleEditScore(event)}
             />
           </label>
           <label className={styles.editUser__label} htmlFor="points">
             <input
               className={styles.editUser__input}
-              type="text"
+              type="number"
               value={editUser.score}
-              score="score"
+              name="score"
               placeholder="Points"
-              onChange={(event) => onHandleEditScore(event, 'score')}
+              onChange={(event) => onHandleEditScore(event)}
             />
           </label>
           <div className={styles.editUser__container}>
@@ -78,7 +79,7 @@ export const EditUser = ({ name, score, previousPosition, id, setActive }) => {
 
 EditUser.propTypes = {
   name: PropTypes.string,
-  score: PropTypes.string,
+  score: PropTypes.number,
   previousPosition: PropTypes.number,
   id: PropTypes.string,
   setActive: PropTypes.func,

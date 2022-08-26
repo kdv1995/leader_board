@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import React from 'react';
 import { nanoid } from 'nanoid';
 import { UserRow } from 'components';
@@ -11,17 +12,18 @@ export const TableBody = () => {
   return (
     <table className={styles.table__body}>
       <tbody>
-        {leaders.map(({ name, score, id, difference, place }, index) => (
-          <UserRow
-            key={nanoid()}
-            id={id}
-            score={score}
-            name={name}
-            difference={difference}
-            index={index}
-            previousPosition={place}
-          />
-        ))}
+        {leaders?.length &&
+          leaders.map(({ name, score, id, difference, place }, index) => (
+            <UserRow
+              key={nanoid()}
+              id={id}
+              score={score}
+              name={name}
+              difference={difference}
+              index={index}
+              previousPosition={place}
+            />
+          ))}
       </tbody>
     </table>
   );

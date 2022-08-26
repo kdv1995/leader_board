@@ -15,9 +15,7 @@ export const TableHeader = () => {
     setUserActive(true);
   };
   const history = useSelector(historySelector);
-  console.log(history);
   const historyStep = useSelector(historyStepSelector);
-  console.log(historyStep);
   const disablePrev = useMemo(() => {
     if (historyStep === 1) {
       return true;
@@ -27,7 +25,7 @@ export const TableHeader = () => {
   const disableNext = useMemo(() => {
     if (
       Object.keys(history).length === 1 ||
-      (historyStep === Object.keys(history).length && historyStep > 0)
+      (historyStep === Object.keys(history).length && historyStep > 1)
     ) {
       return true;
     }
