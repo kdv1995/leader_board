@@ -2,18 +2,16 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import { UserRow } from 'components';
 import { useSelector } from 'react-redux';
-import { dataSelector } from 'store/selector/dataSelector';
+
 import styles from 'pages/LeaderTable/TableBody/TableBody.module.scss';
-import { historySelector } from 'store/selector/historySelector';
+import { leadersSelector } from 'store/selector/leadersSelector';
 
 export const TableBody = () => {
-  const leadersList = useSelector(dataSelector);
-  const history = useSelector(historySelector);
-  console.log(history);
+  const leaders = useSelector(leadersSelector);
   return (
     <table className={styles.table__body}>
       <tbody>
-        {leadersList.map(({ name, score, id, difference, place }, index) => (
+        {leaders.map(({ name, score, id, difference, place }, index) => (
           <UserRow
             key={nanoid()}
             id={id}

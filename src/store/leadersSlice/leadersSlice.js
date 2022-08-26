@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
@@ -14,6 +15,8 @@ const initialDataSlice = createSlice({
     data: [],
     fetching: false,
     error: null,
+    history: {},
+    historyStep: 0,
   },
   reducers: {
     setEditUserScore: (state, { payload }) => {
@@ -49,6 +52,10 @@ const initialDataSlice = createSlice({
             difference: user.place === currentIndex ? 'No change' : user.place - currentIndex,
           };
         });
+      state.history = {
+        ...state.history,
+        [`day_${(state.historyStep += 1)}`]: state.data,
+      };
     },
     setAddNewUser: (state, { payload }) => {
       const { id, score, name, difference } = payload;
@@ -57,6 +64,16 @@ const initialDataSlice = createSlice({
       state.data = state.data
         .sort((a, b) => b.score - a.score)
         .map((item, currentIndex) => ({ ...item, place: currentIndex + 1 }));
+      state.history = {
+        ...state.history,
+        [`day_${(state.historyStep += 1)}`]: state.data,
+      };
+    },
+    setPreviousHistoryStep: (state) => {
+      state.data = state.history[`day_${(state.historyStep -= 1)}`];
+    },
+    setNextHistoryStep: (state) => {
+      state.data = state.history[`day_${(state.historyStep += 1)}`];
     },
   },
   extraReducers: (builder) => {
@@ -74,7 +91,10 @@ const initialDataSlice = createSlice({
         }))
         .sort((a, b) => b.score - a.score)
         .map((item, currentIndex) => ({ ...item, place: currentIndex + 1 }));
-
+      state.history = {
+        ...state.history,
+        [`day_${(state.historyStep += 1)}`]: state.data,
+      };
       state.fetching = false;
     });
     builder.addCase(fetchLeaders.rejected, (state, { payload, error }) => {
@@ -104,4 +124,5 @@ const initialDataSlice = createSlice({
 });
 
 export default initialDataSlice.reducer;
-export const { setEditUserScore, setAddNewUser } = initialDataSlice.actions;
+export const { setEditUserScore, setAddNewUser, setPreviousHistoryStep, setNextHistoryStep } =
+  initialDataSlice.actions;

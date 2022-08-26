@@ -1,3 +1,6 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable no-self-compare */
+/* eslint-disable max-len */
 import edit from 'assets/icons/edit.svg';
 import profilePhoto from 'assets/persons/mark.svg';
 import styles from 'components/UserRow/UserRow.module.scss';
@@ -20,14 +23,17 @@ export const UserRow = ({ id, name, score, difference, index, previousPosition }
       </td>
       <td className={styles.user__score}>{score}</td>
       <td className={styles.user__name}>{name}</td>
-      {Math.sign(difference) === -1 && difference !== 'No change' && (
+      {difference === 'No change' && <td className={styles.user__difference}>{difference}</td>}
+      {difference === 0 && <td className={styles.user__difference}>No change</td>}
+      {difference === 'New user' && <td className={styles.user__difference_new}>{difference}</td>}
+      {difference === 1 && <td className={styles.user__difference_up}>{`${difference} place`}</td>}
+      {difference === -1 && (
         <td className={styles.user__difference_down}>{`${difference} place`}</td>
       )}
-      {Math.sign(difference) === 1 && difference !== 'No change' && (
-        <td className={styles.user__difference_up}>{`${difference} places`}</td>
+      {difference > 1 && <td className={styles.user__difference_up}>{`${difference} places`}</td>}
+      {difference < -1 && (
+        <td className={styles.user__difference_down}>{`${difference} places`}</td>
       )}
-      {difference === 'No change' && <td className={styles.user__difference}>{difference}</td>}
-      {difference === 'New user' && <td className={styles.user__difference_new}>{difference}</td>}
       <td>
         <button type="button" onClick={onHandleEditScoreActive}>
           <img src={edit} alt="edit" />
@@ -51,15 +57,6 @@ UserRow.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   score: PropTypes.number,
-  difference: PropTypes.number,
-  previousPosition: PropTypes.number,
-};
-
-UserRow.defaultProps = {
-  index: PropTypes.number,
-  id: PropTypes.string,
-  name: PropTypes.string,
-  score: PropTypes.number,
-  difference: PropTypes.number,
+  difference: PropTypes.string,
   previousPosition: PropTypes.number,
 };

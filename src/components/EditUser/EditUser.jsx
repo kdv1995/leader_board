@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import styles from 'components/EditUser/EditUser.module.scss';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -18,7 +19,7 @@ export const EditUser = ({ name, score, previousPosition, id, setActive }) => {
   const onHandleEditScore = (event, key) => {
     setEditUser((prevState) => ({
       ...prevState,
-      [key]: event.target.value,
+      [key]: Number(event.target.value),
     }));
   };
   const onHandleFormData = () => {
@@ -77,14 +78,7 @@ export const EditUser = ({ name, score, previousPosition, id, setActive }) => {
 
 EditUser.propTypes = {
   name: PropTypes.string,
-  score: PropTypes.number,
-  previousPosition: PropTypes.number,
-  id: PropTypes.string,
-  setActive: PropTypes.func,
-};
-EditUser.defaultProps = {
-  name: PropTypes.string,
-  score: PropTypes.number,
+  score: PropTypes.string,
   previousPosition: PropTypes.number,
   id: PropTypes.string,
   setActive: PropTypes.func,

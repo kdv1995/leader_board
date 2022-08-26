@@ -1,4 +1,4 @@
-@import "variables.scss";
+@import 'variables.scss';
 * {
   padding: 0px;
   margin: 0px;
@@ -36,12 +36,9 @@ input,
 button,
 textarea {
   font-family: $fontFamily;
-  font-size: inherit;
 }
 button {
   cursor: pointer;
-  color: inherit;
-  background-color: inherit;
 }
 a {
   color: inherit;
